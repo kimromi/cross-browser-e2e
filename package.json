@@ -1,0 +1,12 @@
+{
+  "name": "cross-browser-e2e",
+  "private": true,
+  "scripts": {
+    "test:e2e": "node e2e.js"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "chromedriver": "^77.0.0",
+    "selenium-webdriver": "^4.0.0-alpha.5"
+  }
+}
