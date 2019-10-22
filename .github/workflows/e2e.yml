@@ -10,3 +10,19 @@ jobs:
         node-version: 12
     - run: npm install
     - run: npm run test:e2e
+      env:
+        BROWSER: chrome
+  safari:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - run: npm install
+      - run: |
+          sudo safaridriver --enable
+          safaridriver -p 0 &
+      - run: npm run test:e2e
+        env:
+          BROWSER: safari

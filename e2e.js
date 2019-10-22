@@ -1,16 +1,6 @@
 const webdriver = require('selenium-webdriver');
 const { Builder } = webdriver;
-
-require("chromedriver");
-const capabilities = webdriver.Capabilities.chrome();
-capabilities.set('chromeOptions', {
-  args: [
-    '--headless',
-    '--no-sandbox',
-    '--disable-gpu',
-    '--window-size=1980,1200'
-  ],
-});
+const capabilities = require('./createCapabilities');
 
 (async () => {
   const driver = await new Builder().withCapabilities(capabilities).build();
