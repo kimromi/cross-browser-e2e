@@ -18,9 +18,8 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
-      - run: |
-        sudo safaridriver --enable
-        defaults write com.apple.Safari IncludeDevelopMenu YES
+      - run: "sudo safaridriver --enable"
+      - run: "defaults write com.apple.Safari IncludeDevelopMenu YES"
       - run: "cd JavaScript/ && npm install && npm run test:e2e"
         env:
           BROWSER: safari
