@@ -1,0 +1,13 @@
+name: cross-browser-e2e.rb
+on: [push]
+jobs:
+  safari:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-ruby@v1
+        with:
+          ruby-version: '2.6.x'
+      - run: cd Ruby/
+      - run: bundle install
+      - run: bundle exec rspec
