@@ -1,0 +1,32 @@
+name: cross-browser-e2e.js
+on: [push]
+jobs:
+  chrome:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - run: |
+        cd JavaScript
+        npm install
+        npm run test:e2e
+        env:
+          BROWSER: chrome
+  safari:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - run: |
+          sudo safaridriver --enable
+          safaridriver -p 0 &
+      - run: |
+        cd JavaScript
+        npm install
+        npm run test:e2e
+        env:
+          BROWSER: chrome
