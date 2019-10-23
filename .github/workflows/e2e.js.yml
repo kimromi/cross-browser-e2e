@@ -8,8 +8,7 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
-      - run: "cd JavaScript/ && npm install"
-      - run: "cd JavaScript/ && npm run test:e2e"
+      - run: "cd JavaScript/ && npm install && npm run test:e2e"
         env:
           BROWSER: chrome
   safari:
@@ -22,7 +21,6 @@ jobs:
       - run: |
           sudo safaridriver --enable
           safaridriver -p 0 &
-      - run: "cd JavaScript/ && npm install"
-      - run: "cd JavaScript/ && npm run test:e2e"
+      - run: "cd JavaScript/ && npm install && npm run test:e2e"
         env:
           BROWSER: safari

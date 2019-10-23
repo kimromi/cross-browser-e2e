@@ -8,6 +8,4 @@ jobs:
       - uses: actions/setup-ruby@v1
         with:
           ruby-version: '2.6.x'
-      - run: cd Ruby/
-      - run: bundle install
-      - run: bundle exec rspec
+      - run: "cd Ruby/ && bundle install && bundle exec rspec"
