@@ -8,4 +8,5 @@ jobs:
       - uses: actions/setup-ruby@v1
         with:
           ruby-version: '2.6.x'
+      - run: sudo safaridriver --enable
       - run: "cd Ruby/ && bundle install && bundle exec rspec"
