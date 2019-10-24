@@ -20,7 +20,8 @@ jobs:
       - uses: actions/setup-ruby@v1
         with:
           ruby-version: '2.6.x'
-      - run: cd Ruby/ && bundle install && bundle exec rspec
+      - run: bundle install
+      - run: bundle exec rspec
         env:
           BROWSER: chrome
   ie:
@@ -32,6 +33,7 @@ jobs:
         with:
           ruby-version: '2.6.x'
       - run: nuget install Selenium.WebDriver.IEDriver -Version 3.150.0
-      - run: cd Ruby/ && bundle install && bundle exec rspec
+      - run: bundle install
+      - run: bundle exec rspec
         env:
           BROWSER: ie
