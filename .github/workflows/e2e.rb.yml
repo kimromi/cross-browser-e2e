@@ -1,6 +1,17 @@
 name: cross-browser-e2e.rb
 on: [push]
 jobs:
+  ie:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-ruby@v1
+        with:
+          ruby-version: '2.6.x'
+      - run: bundle install
+      - run: bundle exec rspec
+        env:
+          BROWSER: ie
   # cannot change setting 'Allow Remote Automation'
   # safari:
   #   runs-on: macos-latest
@@ -13,6 +24,17 @@ jobs:
   #     - run: "cd Ruby/ && bundle install && bundle exec rspec"
   #       env:
   #         BROWSER: safari
+  firefox:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-ruby@v1
+        with:
+          ruby-version: '2.6.x'
+      - run: bundle install
+      - run: bundle exec rspec
+        env:
+          BROWSER: firefox
   chrome:
     runs-on: windows-latest
     steps:
@@ -24,14 +46,3 @@ jobs:
       - run: bundle exec rspec
         env:
           BROWSER: chrome
-  ie:
-    runs-on: windows-latest
-    steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-ruby@v1
-        with:
-          ruby-version: '2.6.x'
-      - run: bundle install
-      - run: bundle exec rspec
-        env:
-          BROWSER: ie

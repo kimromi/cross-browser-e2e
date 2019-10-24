@@ -3,9 +3,19 @@ require 'webdrivers'
 require 'capybara'
 require 'capybara/rspec'
 
+Capybara.register_driver :selenium_ie do |app|
+  options = Selenium::WebDriver::IE::Options.new
+  Capybara::Selenium::Driver.new(app, browser: :ie, options: options)
+end
+
 Capybara.register_driver :selenium_safari do |app|
   options = Selenium::WebDriver::Safari::Options.new
   Capybara::Selenium::Driver.new(app, browser: :safari, options: options)
+end
+
+Capybara.register_driver :selenium_firefox do |app|
+  options = Selenium::WebDriver::Firefox::Options.new
+  Capybara::Selenium::Driver.new(app, browser: :firefox, options: options)
 end
 
 Capybara.register_driver :selenium_chrome do |app|
@@ -13,14 +23,8 @@ Capybara.register_driver :selenium_chrome do |app|
     '--headless',
     '--no-sandbox',
     '--disable-gpu',
-    '--window-size=1980,1200',
   ])
   Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
-end
-
-Capybara.register_driver :selenium_ie do |app|
-  options = Selenium::WebDriver::IE::Options.new
-  Capybara::Selenium::Driver.new(app, browser: :ie, options: options)
 end
 
 Capybara.default_max_wait_time = 3
@@ -31,6 +35,8 @@ Capybara.default_driver = case ENV['BROWSER']
                             :selenium_ie
                           when 'safari'
                             :selenium_safari
+                          when 'firefox'
+                            :selenium_firefox
                           else
                             :selenium_chrome
                           end
