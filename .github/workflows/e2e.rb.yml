@@ -12,7 +12,7 @@ jobs:
       - run: bundle exec rspec
         env:
           BROWSER: ie
-  # cannot change setting 'Allow Remote Automation'
+  # Cannot change setting 'Allow Remote Automation' on Safari 13...
   # safari:
   #   runs-on: macos-latest
   #   steps:
@@ -35,17 +35,18 @@ jobs:
       - run: bundle exec rspec
         env:
           BROWSER: firefox
-  edge:
-    runs-on: windows-latest
-    steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-ruby@v1
-        with:
-          ruby-version: '2.6.x'
-      - run: bundle install
-      - run: bundle exec rspec
-        env:
-          BROWSER: edge
+  # Chromium base Edge Supported selenium v4
+  # edge:
+  #   runs-on: windows-latest
+  #   steps:
+  #     - uses: actions/checkout@v1
+  #     - uses: actions/setup-ruby@v1
+  #       with:
+  #         ruby-version: '2.6.x'
+  #     - run: bundle install
+  #     - run: bundle exec rspec
+  #       env:
+  #         BROWSER: edge
   chrome:
     runs-on: windows-latest
     steps:
