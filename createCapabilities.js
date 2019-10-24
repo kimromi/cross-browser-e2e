@@ -1,4 +1,5 @@
 const webdriver = require('selenium-webdriver');
+const path = require('path');
 
 let capabilities;
 if (process.env.BROWSER === 'chrome') {
