@@ -35,6 +35,17 @@ jobs:
       - run: bundle exec rspec
         env:
           BROWSER: firefox
+  edge:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-ruby@v1
+        with:
+          ruby-version: '2.6.x'
+      - run: bundle install
+      - run: bundle exec rspec
+        env:
+          BROWSER: edge
   chrome:
     runs-on: windows-latest
     steps:

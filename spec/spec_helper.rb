@@ -18,6 +18,11 @@ Capybara.register_driver :selenium_firefox do |app|
   Capybara::Selenium::Driver.new(app, browser: :firefox, options: options)
 end
 
+Capybara.register_driver :selenium_edge do |app|
+  options = Selenium::WebDriver::Edge::Options.new
+  Capybara::Selenium::Driver.new(app, browser: :edge, options: options)
+end
+
 Capybara.register_driver :selenium_chrome do |app|
   options = Selenium::WebDriver::Chrome::Options.new(args: [
     '--headless',
@@ -37,6 +42,8 @@ Capybara.default_driver = case ENV['BROWSER']
                             :selenium_safari
                           when 'firefox'
                             :selenium_firefox
+                          when 'edge'
+                            :selenium_edge
                           else
                             :selenium_chrome
                           end
