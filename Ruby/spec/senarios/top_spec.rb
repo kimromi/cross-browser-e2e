@@ -3,5 +3,5 @@ describe 'top' do
     visit '/'
   end
 
-  it { expect(page).to have_content 'おすすめ' }
+  it { expect(page).to have_title 'YouTube' }
 end

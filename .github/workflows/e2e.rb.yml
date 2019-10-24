@@ -1,13 +1,37 @@
 name: cross-browser-e2e.rb
 on: [push]
 jobs:
-  safari:
-    runs-on: macos-latest
+  # cannot change setting 'Allow Remote Automation'
+  # safari:
+  #   runs-on: macos-latest
+  #   steps:
+  #     - uses: actions/checkout@v1
+  #     - uses: actions/setup-ruby@v1
+  #       with:
+  #         ruby-version: '2.6.x'
+  #     - run: "sudo safaridriver --enable"
+  #     - run: "cd Ruby/ && bundle install && bundle exec rspec"
+  #       env:
+  #         BROWSER: safari
+  chrome:
+    runs-on: windows-latest
     steps:
       - uses: actions/checkout@v1
       - uses: actions/setup-ruby@v1
         with:
           ruby-version: '2.6.x'
-      - run: "sudo safaridriver --enable"
-      - run: "defaults write com.apple.Safari IncludeDevelopMenu YES"
-      - run: "cd Ruby/ && bundle install && bundle exec rspec"
+      - run: cd Ruby/ && bundle install && bundle exec rspec
+        env:
+          BROWSER: chrome
+  ie:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: warrenbuckley/Setup-Nuget@v1
+      - uses: actions/setup-ruby@v1
+        with:
+          ruby-version: '2.6.x'
+      - run: nuget install Selenium.WebDriver.IEDriver -Version 3.150.0
+      - run: cd Ruby/ && bundle install && bundle exec rspec
+        env:
+          BROWSER: ie
