@@ -1,5 +1,8 @@
 name: cross-browser-e2e.js
-on: [push]
+on:
+  pull_request:
+    branches:
+      - master
 jobs:
   # cannot change setting 'Allow Remote Automation'
   # safari:

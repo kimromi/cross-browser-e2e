@@ -1,5 +1,8 @@
 name: cross-browser-e2e.rb
-on: [push]
+on:
+  pull_request:
+    branches:
+      - master
 jobs:
   ie:
     runs-on: windows-latest
